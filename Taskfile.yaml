@@ -228,8 +228,8 @@ tasks:
         }        
   docker:
     cmds:
-      - docker build -t adams549659584/go-proxy-bingai:{{.BUILD_VERSION}} -f docker/Dockerfile .
-      - docker tag adams549659584/go-proxy-bingai:{{.BUILD_VERSION}} adams549659584/go-proxy-bingai
+      - docker build -t kang121209/go-proxy-bingai:{{.BUILD_VERSION}} -f docker/Dockerfile .
+      - docker tag kang121209/go-proxy-bingai:{{.BUILD_VERSION}} kang121209/go-proxy-bingai
   default:
     cmds:
       - task: clean
