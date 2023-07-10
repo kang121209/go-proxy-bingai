@@ -34,11 +34,7 @@ const navType = {
   reset: 'reset',
 };
 const navConfigs = [
-  {
-    key: navType.github,
-    label: '开源地址',
-    url: 'https://github.com/kang121209/go-proxy-bingai',
-  },
+ 
   {
     key: navType.version,
     label: '版本信息',
@@ -54,11 +50,6 @@ const navConfigs = [
   {
     key: navType.setToken,
     label: '设置用户',
-  },
-  {
-    key: navType.compose,
-    label: '撰写文章',
-    url: '/web/compose.html',
   },
   {
     key: navType.createImage,

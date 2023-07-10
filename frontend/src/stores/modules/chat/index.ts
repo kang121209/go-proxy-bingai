@@ -29,11 +29,11 @@ export const useChatStore = defineStore(
       },
       {
         baseUrl: 'https://bing-works01.gptlala.com',
-        label: '格子AI写作',
+        label: '格子AI写作01',
       },
       {
-        baseUrl: 'https://bing-works01.gptlala.com',
-        label: '格子AI写作',
+        baseUrl: 'https://bing-works02.aiboxs.site',
+        label: '格子AI写作02',
       },
       {
         baseUrl: '',
