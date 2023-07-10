@@ -32,8 +32,8 @@ export const useChatStore = defineStore(
         label: 'Cloudflare',
       },
       {
-        baseUrl: location.origin,
-        label: '本站',
+        baseUrl: 'bing-works01.gptlala.com',
+        label: '格子AI写作',
       },
       {
         baseUrl: '',
