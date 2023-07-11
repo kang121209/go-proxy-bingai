@@ -23,10 +23,7 @@ export const useChatStore = defineStore(
     const isShowChatServiceSelectModal = ref(false);
     const selectedSydneyBaseUrl = ref('');
     const sydneyConfigs = ref<SydneyConfig[]>([
-      {
-        baseUrl: 'https://sydney.bing.com',
-        label: 'Bing 官方',
-      },
+      
       {
         baseUrl: 'https://bing-works01.gptlala.com',
         label: '格子AI写作01',
@@ -36,8 +33,12 @@ export const useChatStore = defineStore(
         label: '格子AI写作02',
       },
       {
-        baseUrl: '',
-        label: '自定义',
+        baseUrl: 'https://bing-works03.aiboxs.xyz',
+        label: '格子AI写作03',
+      },
+      {
+        baseUrl: 'https://sydney.vcanbb.chat',
+        label: '其他',
         isCus: true,
       },
     ]);
