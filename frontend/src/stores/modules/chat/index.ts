@@ -31,6 +31,7 @@ export const useChatStore = defineStore(
       {
         baseUrl: 'https://bing-works02.aiboxs.site',
         label: '格子AI写作02',
+        isCus: true,
       },
       {
         baseUrl: 'https://bing-works03.aiboxs.xyz',
@@ -39,7 +40,6 @@ export const useChatStore = defineStore(
       {
         baseUrl: 'https://sydney.vcanbb.chat',
         label: '其他',
-        isCus: true,
       },
     ]);
     const sydneyCheckTimeoutMS = 3000;
