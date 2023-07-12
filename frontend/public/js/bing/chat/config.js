@@ -334,7 +334,7 @@ _w['_sydConvTranslation'] = {
   welcomeMessageItemTitle2: '🙌获取更好的答案',
   welcomeMessageItemTitle3: '🎨 获得创意灵感',
   welcomeMessageItemLabel4: '更多创意中的新增功能：',
-  warmWelcomeTitle: '欢迎使用格子AI写作联网版本',
+  warmWelcomeTitle: '欢迎使用格子AI写作',
   welcomeSubtitleText: '由 AI 支持的网页版 手机可以使用',
   workToggleDescription: '以及你的结果包括哪些内容',
   feedbackFirstMessage: '非常抱歉没有帮助到你。是否可以详细说明你不喜欢的方面?',
