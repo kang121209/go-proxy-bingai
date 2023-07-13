@@ -18,6 +18,7 @@ import (
 	"github.com/andybalholm/brotli"
 	"golang.org/x/net/proxy"
 	simpleJson "github.com/bitly/go-simplejson"
+	"github.com/patrickmn/go-cache"
 )
 
 var (
@@ -254,6 +255,11 @@ func NewSingleHostReverseProxy(target *url.URL) *httputil.ReverseProxy {
 }
 
 func get_proxy_ip() (string){
+	c := cache.New(10*time.Minute, 15*time.Minute)
+	if x, found := c.Get("proxy_string"); found {
+		return x.(string)
+	}
+
 	token := "Basic YkJrVDNTTWE6Rnk5eUk4WXE1YjhYV0RUNw=="
 	// url :="https://api.proxy302.com/api/v2/proxy/create/dynamic/traffic/location?country=39"
 	url :="https://api.proxy302.com/api/v2/proxy/create/static_data_center/traffic/location?country=233" 
@@ -289,6 +295,7 @@ func get_proxy_ip() (string){
 	domain:=js.Get("data").Get("url").MustString()
 	port:=js.Get("data").Get("port").MustString()
 	ipstring := "http://" + username + ":"+password+"@"+domain+":"+port
+	c.Set("proxy_string",ipstring,cache.DefaultExpiration)
 	return ipstring
 }
 
