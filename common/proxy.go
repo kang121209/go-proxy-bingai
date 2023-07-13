@@ -13,9 +13,11 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"io/ioutil"
 
 	"github.com/andybalholm/brotli"
 	"golang.org/x/net/proxy"
+	simpleJson "github.com/bitly/go-simplejson"
 )
 
 var (
@@ -53,6 +55,7 @@ var (
 	PROXY_WEB_PREFIX_PATH  = "/web/"
 	PROXY_WEB_PAGE_PATH    = PROXY_WEB_PREFIX_PATH + "index.html"
 )
+
 
 func NewSingleHostReverseProxy(target *url.URL) *httputil.ReverseProxy {
 	originalScheme := "http"
@@ -237,7 +240,56 @@ func NewSingleHostReverseProxy(target *url.URL) *httputil.ReverseProxy {
 		reverseProxy.Transport = tr
 	}
 
+	proxy_ip := get_proxy_ip()
+	if proxy_ip != "" {
+		uri, _ := url.Parse(proxy_ip)
+		tr := &http.Transport{
+			Proxy: http.ProxyURL(uri),
+		}
+		reverseProxy.Transport = tr
+	}
+	
+
 	return reverseProxy
+}
+
+func get_proxy_ip() (string){
+	token := "Basic YkJrVDNTTWE6Rnk5eUk4WXE1YjhYV0RUNw=="
+	// url :="https://api.proxy302.com/api/v2/proxy/create/dynamic/traffic/location?country=39"
+	url :="https://api.proxy302.com/api/v2/proxy/create/static_data_center/traffic/location?country=233" 
+	
+	client := &http.Client{}
+
+	reqest, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		panic(err)
+	}   
+
+	reqest.Header.Add("Authorization",token)
+	
+	response, _ := client.Do(reqest)
+	defer response.Body.Close()
+	io, err := ioutil.ReadAll(response.Body)
+	if err != nil { 		
+		panic(err)
+	}
+
+	js, err := simpleJson.NewJson(io)
+	if err != nil { 		
+		panic(err)
+	}
+
+	code :=js.Get("code").MustInt()
+	if code != 0 {
+		return ""
+	}
+
+	username:=js.Get("data").Get("username").MustString()
+	password:=js.Get("data").Get("password").MustString()
+	domain:=js.Get("data").Get("url").MustString()
+	port:=js.Get("data").Get("port").MustString()
+	ipstring := "http://" + username + ":"+password+"@"+domain+":"+port
+	return ipstring
 }
 
 // return cookie index and cookie
