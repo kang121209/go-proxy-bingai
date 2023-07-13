@@ -55,6 +55,8 @@ var (
 	RAND_IP_COOKIE_NAME    = "BingAI_Rand_IP"
 	PROXY_WEB_PREFIX_PATH  = "/web/"
 	PROXY_WEB_PAGE_PATH    = PROXY_WEB_PREFIX_PATH + "index.html"
+
+	C = cache.New(10*time.Minute, 15*time.Minute)
 )
 
 
@@ -256,8 +258,8 @@ func NewSingleHostReverseProxy(target *url.URL) *httputil.ReverseProxy {
 }
 
 func get_proxy_ip() (string){
-	c := cache.New(10*time.Minute, 15*time.Minute)
-	if x, found := c.Get("proxy_string"); found {
+	
+	if x, found := C.Get("proxy_string"); found {
 		return x.(string)
 	}
 
@@ -296,7 +298,7 @@ func get_proxy_ip() (string){
 	domain:=js.Get("data").Get("url").MustString()
 	port:=js.Get("data").Get("port").MustString()
 	ipstring := "http://" + username + ":"+password+"@"+domain+":"+port
-	c.Set("proxy_string",ipstring,cache.DefaultExpiration)
+	C.Set("proxy_string",ipstring,cache.DefaultExpiration)
 	return ipstring
 }
 
