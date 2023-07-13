@@ -56,7 +56,7 @@ var (
 	PROXY_WEB_PREFIX_PATH  = "/web/"
 	PROXY_WEB_PAGE_PATH    = PROXY_WEB_PREFIX_PATH + "index.html"
 
-	C = cache.New(10*time.Minute, 15*time.Minute)
+	C = cache.New(30*time.Minute, 35*time.Minute)
 )
 
 
