@@ -244,7 +244,7 @@ func NewSingleHostReverseProxy(target *url.URL) *httputil.ReverseProxy {
 	}
 
 	proxy_ip := get_proxy_ip()
-	log.Println('proxy_ip is: ',proxy_ip)
+	log.Println("proxy_ip is: ",proxy_ip)
 	if proxy_ip != "" {
 		uri, _ := url.Parse(proxy_ip)
 		tr := &http.Transport{
@@ -258,7 +258,6 @@ func NewSingleHostReverseProxy(target *url.URL) *httputil.ReverseProxy {
 }
 
 func get_proxy_ip() (string){
-	
 	if x, found := C.Get("proxy_string"); found {
 		return x.(string)
 	}
