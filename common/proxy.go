@@ -14,7 +14,6 @@ import (
 	"strings"
 	"time"
 	"io/ioutil"
-	"math/rand"
 	"github.com/andybalholm/brotli"
 	"golang.org/x/net/proxy"
 	simpleJson "github.com/bitly/go-simplejson"
