@@ -14,7 +14,7 @@ import (
 	"strings"
 	"time"
 	"io/ioutil"
-
+	"math/rand"
 	"github.com/andybalholm/brotli"
 	"golang.org/x/net/proxy"
 	simpleJson "github.com/bitly/go-simplejson"
@@ -263,8 +263,13 @@ func get_proxy_ip() (string){
 	}
 
 	token := "Basic YkJrVDNTTWE6Rnk5eUk4WXE1YjhYV0RUNw=="
+	countrys := make([]string, 0)
+	countrys = append(countrys,
+	   	"233","109","199","15"
+			)
+	country:=countrys[rand.Intn(len(countrys))]
 	// url :="https://api.proxy302.com/api/v2/proxy/create/dynamic/traffic/location?country=39"
-	url :="https://api.proxy302.com/api/v2/proxy/create/static_data_center/traffic/location?country=233" 
+	url :="https://api.proxy302.com/api/v2/proxy/create/static_data_center/traffic/location?country=" + country
 	
 	client := &http.Client{}
 
@@ -289,7 +294,26 @@ func get_proxy_ip() (string){
 
 	code :=js.Get("code").MustInt()
 	if code != 0 {
-		return ""
+	reasons := make([]string, 0)
+	reasons = append(reasons,
+	    "http://B9wWirFp:lTmO7t4AlQnjTDpQ@proxy.proxy302.com:2222",
+	    "http://h4ke1r8c:0kS0AWo2z7YdwxJW@proxy.proxy302.com:2222",
+	    "http://Kc1r4GRe:GQgSEQY642Ru5V6m@proxy.proxy302.com:2222",
+	    "http://gD1MTSTi:rrqJSJ7xDhE7LEjL@proxy.proxy302.com:2222",
+            "http://CthtUaFW:b9WZB5KBZDLKHFI7@proxy.proxy302.com:2222",
+	    "http://KocTTYnI:Fsjy24wSeSYzdsLE@proxy.proxy302.com:2222",
+	    "http://7ZiUBgQv:5uzxlxgjXU5WrSYO@proxy.proxy302.com:2222",
+	    "http://91DqNGFT:FfiSSjDOY8sxMjYx@proxy.proxy302.com:2222",
+	    "http://r88aRxh0:VFgznye7J1IG1x0w@proxy.proxy302.com:2222",
+	    "http://i9IagW86:S7HdrHM6kOtrsKub@proxy.proxy302.com:2222",
+	    "http://vTyexG20:unr0mpkQ18qfgxOs@proxy.proxy302.com:2222",
+	    "http://Gfmd0zSF:d0jBaCuUEcRuMzTg@proxy.proxy302.com:2222",
+	    "http://eZMmjE0P:5Kd6x25DzOaImel9@proxy.proxy302.com:2222",
+	    "http://5Qm7HXDa:rKc19HUHH6RDYiiN@proxy.proxy302.com:2222",
+	    "http://6B9uATpK:h7iGcpN0kciFzv7R@proxy.proxy302.com:2222",
+			)
+	     ips:=reasons[rand.Intn(len(reasons))]
+	     return ips
 	}
 
 	username:=js.Get("data").Get("username").MustString()
