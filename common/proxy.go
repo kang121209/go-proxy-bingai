@@ -265,7 +265,10 @@ func get_proxy_ip() (string){
 	token := "Basic YkJrVDNTTWE6Rnk5eUk4WXE1YjhYV0RUNw=="
 	countrys := make([]string, 0)
 	countrys = append(countrys,
-	   	"233","109","199","15"
+	   			"233",
+			  "109",
+			  "199",
+			  "15"
 			)
 	country:=countrys[rand.Intn(len(countrys))]
 	// url :="https://api.proxy302.com/api/v2/proxy/create/dynamic/traffic/location?country=39"
